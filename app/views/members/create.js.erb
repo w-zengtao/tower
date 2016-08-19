@@ -1,0 +1,7 @@
+(function(){
+  if (0 == $('#teams_member_list_<%= @team_user.user_id %>').length) {
+    $('.team_members').append("<%= j(render(:partial => 'teams/member', locals: { member: @user} )) %>");
+  } else {
+    $('#teams_member_list_<%= @team_user.user_id %>').replaceWith("<%= j(render(:partial => 'teams/member', locals: { member: @user} )) %>");
+  }
+})();
