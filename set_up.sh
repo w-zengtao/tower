@@ -12,6 +12,7 @@ function touch_file()
 touch_file ./config/redis.yml ./config/redis.yml.example
 touch_file ./config/database.yml ./config/database.yml.example
 touch_file ./config/cable.yml ./config/cable.yml.example
+touch_file ./config/secrets.yml ./config/secrets.yml.example
 
 function try_install()
 {
