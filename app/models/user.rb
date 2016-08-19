@@ -7,6 +7,7 @@ class User < ApplicationRecord
   # associations
   has_many :team_users
   has_many :teams, through: :team_users        # 归属的团队
+  has_many :todos                              # 名下的任务
 
   # object methods
   def set_default_team(team)

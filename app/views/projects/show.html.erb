@@ -7,11 +7,12 @@
     <h4>
       任务
       <div class="btn-group">
+        <%= link_to '新建任务', new_project_todo_path(@project), remote: true, class: 'btn btn-mini' %>
       </div>
     </h4>
 
     <ul class="todos-list">
-
+      <%= render partial: 'projects/todo', collection: @project.todos, as: :todo %>
     </ul>
   </div>
 </div>

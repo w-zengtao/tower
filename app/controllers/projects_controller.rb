@@ -8,6 +8,7 @@ class ProjectsController < BaseController
   end
 
   def show
+
   end
 
   def create
@@ -21,7 +22,7 @@ class ProjectsController < BaseController
 
   private
   def set_project
-    @project = Project.find(params[:id])
+    @project = Project.includes(:todos).find(params[:id])
   end
 
   def project_params

@@ -1,0 +1,16 @@
+<li class="todo_form_new">
+  <%= form_for todo, url: project_todos_path(@project), remote: true, html: { class: 'form-inline' } do |f| %>
+    <div class="from-group">
+      <%= f.text_field :name, name: 'todo[name]', class: "form-control input-text", placeholder: "新的任务" %>
+      <div class="todo-tools input-group">
+        <div class="input-group-addon">
+          <a href="javascript:;" class="add-tag" title="点击添加标签">#</a>
+        </div>
+        <div class="input-group-addon">
+          <a href="javascript:;" class="add-priority" title="点击添加优先级">!</a>
+        </div>
+      </div>
+    </div>
+    <%= f.submit '创建任务' %>
+  <% end %>
+</li>

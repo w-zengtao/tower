@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160819100108) do
+ActiveRecord::Schema.define(version: 20160819154125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "eventable_type", null: false
+    t.integer  "eventable_id",   null: false
+    t.string   "act",            null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "operator_id",    null: false
+    t.index ["eventable_type", "eventable_id"], name: "index_events_on_eventable_type_and_eventable_id", using: :btree
+    t.index ["operator_id"], name: "index_events_on_operator_id", using: :btree
+    t.index ["user_id"], name: "index_events_on_user_id", using: :btree
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
@@ -37,6 +50,17 @@ ActiveRecord::Schema.define(version: 20160819100108) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "state",      default: 0
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["project_id"], name: "index_todos_on_project_id", using: :btree
+    t.index ["user_id"], name: "index_todos_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

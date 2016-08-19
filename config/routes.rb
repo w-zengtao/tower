@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   resources :teams, only: [:create, :new, :show, :index]
   resources :events, only: [:index]
   resources :members, only: [:create]
-  resources :projects, only: [:index, :show, :create]
+  resources :projects, only: [:index, :show, :create] do
+    resources :todos
+  end
+  resources :todos
 
   root 'events#index'
   devise_for :users, controllers: {
