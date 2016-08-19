@@ -1,1 +1,9 @@
-
+<div id="project_list_<%= project.id %>">
+  <ul>
+    <%= link_to project_path(project) do %>
+      <li>
+        <%= project.name %>
+      </li>
+    <% end %>
+  </ul>
+</div>

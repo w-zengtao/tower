@@ -2,7 +2,7 @@ class TeamsController < BaseController
   skip_before_action :ensure_default_team, only: [:new, :create]
 
   def show
-    @members = @current_team.users
+    @members = @current_team.users.includes(:team_users)
   end
 
   def index

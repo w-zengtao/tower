@@ -1,0 +1,8 @@
+(function(){
+  if (0 == $('#project_list_<%= @project.id %>').length) {
+    $('.projects').append("<%= j(render(:partial => 'projects/project', locals: { project: @project} )) %>");
+  } else {
+
+  }
+  $("#project_name").val('');
+})();
