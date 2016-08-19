@@ -3,6 +3,7 @@ class Team < ApplicationRecord
   # associations
   has_many :team_users
   has_many :users, through: :team_users
+  has_many :projects
 
   # callbacks
    after_commit :notify_team_user, on: :create

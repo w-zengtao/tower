@@ -1,0 +1,16 @@
+<div class="main-content">
+  <div class="tools">
+    <div class="new_project_form">
+      <label>新建项目</label>
+      <%= form_for :project, remote: true do |f| %>
+        <%= f.text_field :name, placeholder: '请输入新建的项目名'  %>
+        <%= f.submit '新建' %>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <div class="projects">
+    <label>项目列表</label>
+    <%= render partial: 'project', collection: @projects, as: :project %>
+  </div>
+</div>
