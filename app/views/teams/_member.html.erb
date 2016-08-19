@@ -1,0 +1,9 @@
+<div id="teams_member_list_<%= member.id %>">
+  <ul>
+    <%= link_to root_path do %>
+      <li>
+        <%= member.name %> & <%= member.email %> & <%= TeamUser::LEVEL[current_level(member)] %>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :teams, only: [:create, :new, :show]
+  resources :teams, only: [:create, :new, :show, :index]
   resources :events, only: [:index]
+  resources :members, only: [:create]
 
   root 'events#index'
   devise_for :users, controllers: {

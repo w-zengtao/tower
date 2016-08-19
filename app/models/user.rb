@@ -6,7 +6,12 @@ class User < ApplicationRecord
 
   # associations
   has_many :team_users
-  has_many :teams, through: :team_users         # 归属的团队
+  has_many :teams, through: :team_users        # 归属的团队
+
+  # object methods
+  def set_default_team(team)
+    update_attribute('default_team_id', team.id)
+  end
 
   # class methods
   class << self

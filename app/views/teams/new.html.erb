@@ -1,2 +1,14 @@
-<h1>Teams#new</h1>
-<p>Find me in app/views/teams/new.html.erb</p>
+<div class="head-content">
+  <label>创建新的团队</label>
+</div>
+<hr style="border:3 dashed #ff0033" width="100%" SIZE=3>
+<div class="main-content">
+  <%= form_for @team do |f| %>
+    <%= f.label '请输入新建团队的名字' %>
+    <%= f.text_field :name, autofocus: true%>
+
+    <div class="actions">
+      <%= f.submit "确定创建" %>
+    </div>
+  <% end %>
+</div>

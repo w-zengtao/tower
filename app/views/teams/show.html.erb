@@ -1,2 +1,27 @@
-<h1>Teams#show</h1>
-<p>Find me in app/views/teams/show.html.erb</p>
+<div class="head-content">
+  <label>当前团队 :  <%= @current_team.name %></label>
+  <label> 切换团队
+    <%= select_tag 'team_id', options_from_collection_for_select(current_user.teams, 'id', 'name')%>
+  </label>
+  <label>
+    <%= link_to '创建团队', new_team_path %>
+  </label>
+</div>
+<hr style="border:3 dashed #ff0033" width="100%" size="3">
+
+<div class="main-content">
+  <% if can_admin? %>
+    <div class="add_members">
+      <label>Add Member</label>
+      <%= form_for :member, url: members_path, remote: true do |f| %>
+        <%= f.select :id, collection: User.select(:email, :id).reject{ |item| item.email == current_user.email }.map { |item| [item.email, item.id] }.to_a %>
+        <%= f.select :user_level, collection: TeamUser::PAGE_LEVEL.to_a  %>
+        <%= f.submit 'Add or Change Member' %>
+      <% end %>
+    </div>
+  <% end %>
+  <br>
+  <div class="team_members">
+    <%= render partial: 'member', collection: @members, as: :member %>
+  </div>
+</div>

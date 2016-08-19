@@ -10,7 +10,13 @@ class BaseController < ApplicationController
   end
 
   def ensure_default_team
-    
+    # @current_team = current_user.teams.find_by(id: current_user.default)
+    @current_team = Team.find_by(id: current_user.default_team_id)
+    if @current_team
+      @current_team
+    else
+      redirect_to new_team_path
+    end
   end
 
 end
