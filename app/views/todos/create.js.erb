@@ -1,1 +1,4 @@
-alert('this is test');
+(function() {
+  $('.project-show .todo_form_new').remove();
+  $('.todos-list').append("<%= j(render(partial: 'projects/todo', locals: { todo: @todo })) %>");
+})();

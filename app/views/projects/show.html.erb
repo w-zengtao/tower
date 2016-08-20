@@ -11,8 +11,10 @@
       </div>
     </h4>
 
-    <ul class="todos-list">
-      <%= render partial: 'projects/todo', collection: @project.todos, as: :todo %>
-    </ul>
+    <div class="project-show">
+      <ul class="todos-list">
+        <%= render partial: 'projects/todo', collection: @project.todos, as: :todo %>
+      </ul>
+    </div>
   </div>
 </div>

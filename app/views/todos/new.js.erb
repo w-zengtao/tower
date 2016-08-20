@@ -1,1 +1,3 @@
-$('.todos-list').append("<%= j(render(partial: 'todos/todo', locals: { todo: @todo })) %>");
+(function(){
+  $('.todos-list').append("<%= j(render(partial: 'todos/todo', locals: { todo: @todo })) %>");
+})();
