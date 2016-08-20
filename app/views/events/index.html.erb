@@ -1,2 +1,17 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<div class="head-content">
+  <label>Event List</label>
+</div>
+<hr style="border:3 dashed #ff0033" width="100%" SIZE=3>
+<div class="main-content">
+  <div class="event_list">
+    <ul>
+      <% @events.each do |key, values| %>
+        <div id="<%= key %>">
+          <p> <%= key %> </p>
+          <%= render partial: 'event', collection: values, as: :event %>
+          <br>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+</div>

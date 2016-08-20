@@ -13,4 +13,9 @@ class Event < ApplicationRecord
   after_create_commit do
     EventBroadcastJob.perform_later(self.id)
   end
+
+  # methods
+  def name
+    self.eventable.send(:name)
+  end
 end
