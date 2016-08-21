@@ -6,4 +6,7 @@ class Access < ApplicationRecord
   # associations
   belongs_to :project
   belongs_to :user
+
+  # scopes
+  scope :valid, -> { where.not(status: 0)  }
 end

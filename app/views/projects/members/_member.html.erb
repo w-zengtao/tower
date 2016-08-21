@@ -1,4 +1,13 @@
 <li id="member-list-<%= member.id %>">
   <label> <%= member.name %></label>
   <label> <%= TeamUser::LEVEL[member.role(@current_team)] %> </label>
+  <% if current_user.can_admin?(@project) %>
+    <label style="padding-left: 1em">
+      <div class="action">
+        <% if current_user != member %>
+          <%= link_to '移除', project_member_path(@project, member), method: :delete, remote: true %>
+        <% end %>
+      </div>
+    </label>
+  <% end %>
 </li>

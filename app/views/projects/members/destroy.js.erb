@@ -1,0 +1,4 @@
+(function(){
+  $("#member-list-<%= @access.user_id %>").remove();
+  $("#access_member optgroup").append("<%= j(render(:partial => 'projects/members/option', locals: { access: @access} )) %>");
+})();

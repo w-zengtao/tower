@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :projects, only: [:index, :show, :create, :edit] do
     resources :todos
     scope module: :projects do
-      resources :members, only: [:index, :create]
+      resources :members, only: [:index, :create, :destroy]
     end
   end
   resources :accesses, only: [:create]

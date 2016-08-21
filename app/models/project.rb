@@ -11,7 +11,14 @@ class Project < ApplicationRecord
     add_member(User.current)
   end
 
+  # scopes
+  # scope :valid_members, -> { self.members.where("accesses.status = ?", 1) }
+
   # methods
+  def valid_members
+    members.where("accesses.status = ?", 1)
+  end
+
   def add_member(user)
     # 这里要判断 user 是不是自己 || user 在当前团队的角色
     level = 'default'
@@ -25,5 +32,5 @@ class Project < ApplicationRecord
   def add_member_by_level(user, level)
     accesses.create(user: user, level: level)
   end
-  
+
 end
