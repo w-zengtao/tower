@@ -28,6 +28,17 @@ module Projects
         end
       end
     end
+
+    def update
+      @todo = Todo.find_by(id: params[:id])
+      act = params[:act].to_i
+      if @todo && act
+        @todo.update_attribute('state', act)
+      end
+      respond_to do |format|
+        format.js
+      end
+    end
     private
 
     def set_project

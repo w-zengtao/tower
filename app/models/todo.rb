@@ -1,5 +1,14 @@
 class Todo < ApplicationRecord
   include SoftDelete
+
+  STATE = {
+    0 => '创建了',
+    1 => '开始了',
+    2 => '暂停了',
+    3 => '指派了',
+    10 => '完成了'
+  }
+
   # validates
   validates :user_id, numericality: { only_integer: true }, allow_nil: true
 
@@ -16,17 +25,17 @@ class Todo < ApplicationRecord
 
   after_commit :notify_event_when_create, on: :create
   def notify_event_when_create
-    notify_event('create')
+    notify_event('创建了')
   end
 
   after_commit :notify_event_when_update, on: :update
   def notify_event_when_update
-    notify_event('update')
+    notify_event(Todo::STATE[state])
   end
 
   after_destroy :notify_event_when_destroy
   def notify_event_when_destroy
-    notify_event('destroy')
+    notify_event('删除了')
   end
 
   # scopes
