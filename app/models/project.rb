@@ -25,6 +25,5 @@ class Project < ApplicationRecord
   def add_member_by_level(user, level)
     accesses.create(user: user, level: level)
   end
-
-
+  
 end

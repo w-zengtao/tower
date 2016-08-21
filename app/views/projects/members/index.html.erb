@@ -3,5 +3,18 @@
 </div>
 <hr style="border:3 dashed #ff0033" width="100%" SIZE=3>
 <div class="main-content">
-
+  <div class="member-list">
+    <ul>
+      <%= render partial: 'member', collection: @members, as: :member %>
+    </ul>
+    <% if current_user.can_admin?(@project) %>
+      <div class="add-member-to-project">
+        <%= form_for :access, url: project_members_path(@project), remote: true do |f| %>
+          <label>添加成员</label>
+          <%= f.select :member, collection: @current_team.users.select(:email, :id).reject{ |item| @members.pluck(:email).include? item.email }.map { |item| [item.email, item.id] }.to_a %>
+          <%= f.submit '确定添加' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

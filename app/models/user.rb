@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :team_users
   has_many :teams, through: :team_users        # 归属的团队
   has_many :todos                              # 名下的任务
+  has_many :accesses
 
   # object methods
   def set_default_team(team)
@@ -22,6 +23,7 @@ class User < ApplicationRecord
 
   # 用户是否能 Admin 一个项目
   def can_admin?(project)
+    'admin' == accesses.find_by(project_id: project.id).level
   end
 
   # class methods

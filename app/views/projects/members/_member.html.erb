@@ -1,0 +1,4 @@
+<li id="member-list-<%= member.id %>">
+  <label> <%= member.name %></label>
+  <label> <%= TeamUser::LEVEL[member.role(@current_team)] %> </label>
+</li>

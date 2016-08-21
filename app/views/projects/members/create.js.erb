@@ -1,0 +1,4 @@
+(function() {
+  $('.member-list ul').append("<%= j(render(:partial => 'projects/members/member', locals: { member: @new_member} )) %>");
+  $("#access_member option[value='<%= @new_member.id %>']").remove();
+})();
