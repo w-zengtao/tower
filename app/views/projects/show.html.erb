@@ -16,7 +16,7 @@
 
     <div class="project-show">
       <ul class="todos-list">
-        <%= render partial: 'projects/todo', collection: @project.todos, as: :todo %>
+        <%= render partial: 'projects/todo', collection: @project.todos.valid, as: :todo %>
       </ul>
     </div>
   </div>

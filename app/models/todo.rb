@@ -1,4 +1,5 @@
 class Todo < ApplicationRecord
+  include SoftDelete
   # validates
   validates :user_id, numericality: { only_integer: true }, allow_nil: true
 
@@ -22,6 +23,14 @@ class Todo < ApplicationRecord
   def notify_event_when_update
     notify_event('update')
   end
+
+  after_destroy :notify_event_when_destroy
+  def notify_event_when_destroy
+    notify_event('destroy')
+  end
+
+  # scopes
+  scope :valid, -> { where(deleted_at: nil) }
 
   private
   def notify_event(act)

@@ -1,5 +1,9 @@
-<li class="todo-content">
+<li id="todo-content-<%= todo.id %>">
   <div class="todo-warp">
+    <span>
+      <%= link_to 'Delete', project_todo_path(@project, todo), method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
+    </span>
+
     <span>Start</span>
     <span>Edit</span>
 

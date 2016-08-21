@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :events, only: [:index]
   resources :members, only: [:create] # 因为有 current_team  这里不设置嵌套路由
   resources :projects, only: [:index, :show, :create, :edit] do
-    resources :todos
     scope module: :projects do
+      resources :todos
       resources :members, only: [:index, :create, :destroy]
     end
   end
