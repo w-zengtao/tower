@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160819154125) do
+ActiveRecord::Schema.define(version: 20160820160548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accesses", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.string   "level",      default: "default"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["project_id"], name: "index_accesses_on_project_id", using: :btree
+    t.index ["user_id"], name: "index_accesses_on_user_id", using: :btree
+  end
 
   create_table "events", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,8 +33,10 @@ ActiveRecord::Schema.define(version: 20160819154125) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "operator_id",    null: false
+    t.integer  "project_id"
     t.index ["eventable_type", "eventable_id"], name: "index_events_on_eventable_type_and_eventable_id", using: :btree
     t.index ["operator_id"], name: "index_events_on_operator_id", using: :btree
+    t.index ["project_id"], name: "index_events_on_project_id", using: :btree
     t.index ["user_id"], name: "index_events_on_user_id", using: :btree
   end
 

@@ -1,17 +1,31 @@
 Rails.application.routes.draw do
 
+  # WebSite
   resources :teams, only: [:create, :new, :show, :index]
   resources :events, only: [:index]
-  resources :members, only: [:create]
-  resources :projects, only: [:index, :show, :create] do
+  resources :members, only: [:create] # 因为有 current_team  这里不设置嵌套路由
+  resources :projects, only: [:index, :show, :create, :edit] do
     resources :todos
+    scope module: :projects do
+      resources :members, only: [:index, :create]
+    end
   end
-  resources :todos
+  resources :accesses, only: [:create]
 
+  # API
+  namespace :api do
+    scope module: :v1 do
+      resources :events, only: [:index]
+    end
+  end
+
+  # Root
   root 'events#index'
+
+  # Devise
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end

@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   belongs_to :eventable, polymorphic: true
   belongs_to :user, optional: true
   belongs_to :operator, class_name: 'User', foreign_key: :operator_id
+  belongs_to :project
 
   # delegate
   delegate :name, to: :operator, prefix: :operator, allow_nil: true

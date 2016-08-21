@@ -1,5 +1,8 @@
 <div class="head-content">
   <label><%= @project.name %></label>
+  <label class="pull-right">
+    <%= link_to '成员: ' + @project.accesses.count.to_s, project_members_path(@project) %>
+  </label>
 </div>
 <hr style="border:3 dashed #ff0033" width="100%" SIZE=3>
 <div class="main-content">

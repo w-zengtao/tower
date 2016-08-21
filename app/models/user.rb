@@ -14,6 +14,16 @@ class User < ApplicationRecord
     update_attribute('default_team_id', team.id)
   end
 
+  # 用户在当前 team 的角色
+  def role(team)
+    @team_user = team_users.find_by(team: team)
+    @team_user.level if @team_user
+  end
+
+  # 用户是否能 Admin 一个项目
+  def can_admin?(project)
+  end
+
   # class methods
   class << self
     def current
