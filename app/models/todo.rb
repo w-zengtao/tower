@@ -40,6 +40,8 @@ class Todo < ApplicationRecord
 
   # scopes
   scope :valid, -> { where(deleted_at: nil) }
+  scope :finished, -> { where(state: 10)  }
+  scope :unfinished, -> { where.not(state: 10)  }
 
   private
   def notify_event(act)

@@ -8,7 +8,7 @@
 <div class="main-content">
   <div class="project_todos" style="padding-left: 30px">
     <h4>
-      任务
+      待处理任务
       <div class="btn-group">
         <%= link_to '新建任务', new_project_todo_path(@project), remote: true, class: 'btn btn-mini' %>
       </div>
@@ -16,7 +16,17 @@
 
     <div class="project-show">
       <ul class="todos-list">
-        <%= render partial: 'projects/todo', collection: @project.todos.valid, as: :todo %>
+        <%= render partial: 'projects/todo', collection: @project.todos.valid.unfinished, as: :todo %>
+      </ul>
+    </div>
+
+    <hr style="border:3 dashed #ff0033" width="100%" SIZE=3>
+    <h4>
+      已完成任务
+    </h4>
+    <div class="project-show-finished-todos">
+      <ul class="todos-list">
+        <%= render partial: 'projects/todo', collection: @project.todos.valid.finished, as: :todo %>
       </ul>
     </div>
   </div>
