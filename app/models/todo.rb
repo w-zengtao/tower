@@ -6,6 +6,7 @@ class Todo < ApplicationRecord
     1 => '开始了',
     2 => '暂停了',
     3 => '指派了',
+    4 => '重新打开了',
     10 => '完成了'
   }
 
@@ -42,6 +43,11 @@ class Todo < ApplicationRecord
   scope :valid, -> { where(deleted_at: nil) }
   scope :finished, -> { where(state: 10)  }
   scope :unfinished, -> { where.not(state: 10)  }
+
+  # methods
+  def done?
+    10 == state
+  end
 
   private
   def notify_event(act)

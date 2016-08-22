@@ -1,7 +1,7 @@
 module Projects
   class TodosController < BaseController
 
-    before_action :set_project, only: [:new, :create]
+    before_action :set_project, only: [:new, :create, :update]
 
     def new
       @todo = @project.todos.build

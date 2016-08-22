@@ -4,12 +4,22 @@
       <%= link_to 'Delete', project_todo_path(@project, todo), method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
     </span>
 
-    <span>Start</span>
-    <span>Edit</span>
+    <% unless todo.done? %>
+      <span>Start</span>
+      <span>Edit</span>
+      <span>
+        <%= link_to 'Done', project_todo_path(@project, todo, {act: 10}), method: :patch, remote: true %>
+      </span>
+    <% else %>
+      <span>
+        <%= link_to 'Reopen', project_todo_path(@project, todo, {act: 4}), method: :patch, remote: true %>
+      </span>
+    <% end %>
     <span>
-      <%= link_to 'Done', project_todo_path(@project, todo, {act: 10}), method: :patch, remote: true %>
+      <a href="#"> 未指派 </a>
     </span>
-    <%= todo.name %>
-    <a href="#"> 未指派 </a>
+    <span>
+      <%= todo.name %>
+    </span>
   </div>
 </li>
