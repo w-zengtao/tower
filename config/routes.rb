@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     end
   end
   resources :accesses, only: [:create]
+  resources :todos, only: [:show] do
+    scope module: :todos do
+      resources :appoints, only: [:create, :update, :destroy]
+    end
+  end
 
   # API
   namespace :api do

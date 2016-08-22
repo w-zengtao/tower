@@ -16,7 +16,7 @@
 
     <div class="project-show">
       <ul class="todos-list unfinished">
-        <%= render partial: 'projects/todo', collection: @project.todos.valid.unfinished, as: :todo %>
+        <%= render partial: 'projects/todo', collection: @project.todos.valid.includes(:user).unfinished, as: :todo %>
       </ul>
     </div>
 

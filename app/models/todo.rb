@@ -5,8 +5,9 @@ class Todo < ApplicationRecord
     0 => '创建了',
     1 => '开始了',
     2 => '暂停了',
-    3 => '指派了',
+    3 => '指派了', # 指派和重新指派默认会消除任务的 暂停状态
     4 => '重新打开了',
+    5 => '重新指派了',
     10 => '完成了'
   }
 
@@ -49,6 +50,9 @@ class Todo < ApplicationRecord
     10 == state
   end
 
+  def pause?
+    2 == state
+  end
   private
   def notify_event(act)
     TodoJob.perform_later(User.current.id, self.user_id, self.class.name, self.id, act)

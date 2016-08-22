@@ -1,0 +1,5 @@
+(function() {
+  // $('#myModal-<%= @todo.id %> .close').click();
+  $('#todo-content-<%= @todo.id %>').replaceWith("<%= j render 'projects/todo', todo: @todo %>");
+  $('.modal-backdrop').remove();
+})();

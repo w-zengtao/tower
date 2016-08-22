@@ -1,3 +1,6 @@
 <li>
   <%= event.operator_name %> <%= event.act %> <%= event.eventable_type %>: <%= event.name %>
+  <% if event.user %>
+    给 <%= event.user.name %>
+  <% end %>
 </li>

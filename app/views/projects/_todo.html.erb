@@ -1,3 +1,6 @@
+<% unless @project %>
+  <% @project = todo.project %>
+<% end %>
 <li id="todo-content-<%= todo.id %>">
   <div class="todo-warp">
     <span>
@@ -5,21 +8,57 @@
     </span>
 
     <% unless todo.done? %>
-      <span>Start</span>
+      <% if todo.pause? %>
+        <span>
+          <%= link_to 'Start', project_todo_path(@project, todo, {act: 1}), method: :patch, remote: true %>
+        </span>
+      <% else %>
+        <span>
+          <%= link_to 'Pause', project_todo_path(@project, todo, {act: 2}), method: :patch, remote: true %>
+        </span>
+      <% end %>
       <span>Edit</span>
       <span>
         <%= link_to 'Done', project_todo_path(@project, todo, {act: 10}), method: :patch, remote: true %>
       </span>
+      <% unless todo.user %>
+        <span>
+          <button  type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%= todo.id %>"> 未指派 </button>
+        </span>
+      <% else %>
+        <span>
+          负责人: <%= todo.user.name %>
+        </span>
+        <button  type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%= todo.id %>"> 重新指派 </button>
+      <% end %>
     <% else %>
       <span>
         <%= link_to 'Reopen', project_todo_path(@project, todo, {act: 4}), method: :patch, remote: true %>
       </span>
     <% end %>
     <span>
-      <a href="#"> 未指派 </a>
-    </span>
-    <span>
       <%= todo.name %>
     </span>
+    <div class="modal fade" id="myModal-<%= todo.id %>" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title">指派给</h4>
+          </div>
+          <div class="modal-body">
+            <%= form_for :appoint, url: todo_appoints_path(todo), remote: true do |f| %>
+              <label>选择成员</label>
+              <%= f.select :user, @project.members.select(:name, :id).map { |member| [member.name, member.id] } %>
+              <div>
+                <%= f.submit '提交', class: 'btn btn-info btn-sm' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </li>
