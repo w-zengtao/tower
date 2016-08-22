@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   resources :accesses, only: [:create]
   resources :todos, only: [:show] do
     scope module: :todos do
-      resources :appoints, only: [:create, :update, :destroy]
+      resources :appoints, only: [:create]
+      resources :comments, only: [:create, :update]
     end
   end
 

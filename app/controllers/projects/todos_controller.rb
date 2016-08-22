@@ -7,6 +7,10 @@ module Projects
       @todo = @project.todos.build
     end
 
+    def show
+      
+    end
+
     def create
       @todo = @project.todos.build(todo_params)
       if @todo.save
