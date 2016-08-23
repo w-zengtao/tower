@@ -25,6 +25,9 @@ gem 'devise'
 # Todo State
 gem 'state_machine'
 
+# Datepicker
+gem 'bootstrap-datepicker-rails'
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_girl_rails'

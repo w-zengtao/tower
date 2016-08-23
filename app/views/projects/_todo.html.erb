@@ -75,9 +75,9 @@
             <h4 class="modal-title">指定截止日期</h4>
           </div>
           <div class="modal-body">
-            <%= form_for :appoint, url: todo_appoints_path(todo), remote: true do |f| %>
-              <label>选择成员</label>
-              <%= f.select :user, @project.members.select(:name, :id).map { |member| [member.name, member.id] } %>
+            <%= form_for :todo, url: project_todo_path(@project, todo), remote: true, method: :patch do |f| %>
+              <label>选择日期</label>
+              <%= f.text_field :deadline, 'data-provide': 'datepicker' %>
               <div>
                 <%= f.submit '提交', class: 'btn btn-info btn-sm' %>
               </div>
@@ -88,3 +88,8 @@
     </div>
   </div>
 </li>
+<script type="text/javascript">
+  $(document).on('page:reload', function(){
+    $('.datepicker').datepicker();
+  });
+</script>

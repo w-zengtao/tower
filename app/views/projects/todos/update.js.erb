@@ -1,4 +1,5 @@
 (function(){
+  $('.modal-backdrop').remove();
   $('#todo-content-<%= @todo.id %>').fadeOut();
   $('#todo-content-<%= @todo.id %>').remove();
   <% if 10 == @todo.state %>
