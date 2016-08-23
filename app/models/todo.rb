@@ -55,6 +55,11 @@ class Todo < ApplicationRecord
   def pause?
     2 == state
   end
+
+  def end_day
+    return self.deadline.blank? ? '暂未指定' : self.deadline
+  end
+
   private
   def notify_event(act)
     TodoJob.perform_later(User.current.id, self.user_id, self.class.name, self.id, act)
