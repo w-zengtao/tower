@@ -1,6 +1,10 @@
 <li>
-  <%= event.operator_name %> <%= event.act %> <%= event.eventable_type %>: <%= event.name %>
-  <% if event.user %>
-    给 <%= event.user.name %>
+  <% if 'Todo' == event.eventable_type %>
+    <%= event.operator_name %> <%= event.act %> <%= event.eventable_type %>: <%= event.name %>
+    <% if event.user %>
+      给 <%= event.user.name %>
+    <% end %>
+  <% elsif 'Comment' == event.eventable_type %>
+    <%= event.operator_name %> 对 <%= event.eventable.commentable_type %> : <%= event.eventable.commentable.name %> 发表了 <%= event.eventable_type %> : <%= event.eventable.name %>
   <% end %>
 </li>

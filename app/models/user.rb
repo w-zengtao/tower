@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_many :teams, through: :team_users        # 归属的团队
   has_many :todos                              # 名下的任务
   has_many :accesses
+  has_many :projects, through: :accesses
+
+  belongs_to :team, class_name: 'Team', foreign_key: 'default_team_id'
 
   # object methods
   def set_default_team(team)
