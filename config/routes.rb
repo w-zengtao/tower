@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :update] # todo 评论控制器
     end
   end
+  resources :change_teams, only: [:create]
 
   # API
   namespace :api do

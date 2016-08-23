@@ -1,7 +1,7 @@
 <div class="head-content">
   <label>当前团队 :  <%= @current_team.name %></label>
   <label> 切换团队
-    <%= select_tag 'team_id', options_from_collection_for_select(current_user.teams, 'id', 'name')%>
+    <%= select_tag 'team_id', options_from_collection_for_select(current_user.teams, 'id', 'name'), prompt: "select a team" %>
   </label>
   <label>
     <%= link_to '创建团队', new_team_path %>
@@ -25,3 +25,22 @@
     <%= render partial: 'member', collection: @members, as: :member %>
   </div>
 </div>
+
+<script>
+  document.addEventListener('turbolinks:load', function() {
+    $('#team_id').change(function(event) {
+      team_id = $(this).val();
+      $.ajax({
+        url: '<%= change_teams_path %>',
+        type: 'post',
+        dataType: 'html',
+        data: {
+          'team_id': team_id
+        },
+        success:function(data) {
+          window.location.href = '/teams/' + team_id;
+        }
+      });
+    });
+  });
+</script>
