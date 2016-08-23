@@ -15,3 +15,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+// document.addEventListener('turbolinks:load', function() {
+//   $('ul.navbar-left > li').click(function(event) {
+//     event.preventDefault();
+//     $(this).siblings().removeClass('active');
+//     $(this).addClass('active');
+//   });
+// });
