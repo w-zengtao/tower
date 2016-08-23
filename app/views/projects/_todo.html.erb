@@ -37,7 +37,7 @@
       </span>
     <% end %>
     <span>
-      <%= todo.name %>
+      <%= link_to todo.name + '(点击查看)', project_todo_path(@project, todo) %>
     </span>
     <div class="modal fade" id="myModal-<%= todo.id %>" role="dialog">
       <div class="modal-dialog modal-sm">

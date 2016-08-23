@@ -19,6 +19,8 @@ class Todo < ApplicationRecord
   belongs_to :project
 
   has_many :events, as: :eventable, class_name: 'Event'
+  has_many :comments, as: :commentable, class_name: 'Comment'
+  has_many :total_comments, class_name: 'Comment', foreign_key: 'todo_id'
 
   # callbacks
   # ['create', 'update'].each do |action|

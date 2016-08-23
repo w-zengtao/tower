@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   resources :accesses, only: [:create]
   resources :todos, only: [:show] do
     scope module: :todos do
-      resources :appoints, only: [:create]
-      resources :comments, only: [:create, :update]
+      resources :appoints, only: [:create] # 指派负责人控制器
+      resources :comments, only: [:create, :update] # todo 评论控制器
     end
   end
 

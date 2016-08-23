@@ -8,7 +8,8 @@ module Projects
     end
 
     def show
-      
+      @todo = Todo.find_by(id: params[:id])
+      @comments = @todo.total_comments.includes(:user)
     end
 
     def create

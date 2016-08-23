@@ -1,0 +1,25 @@
+<div class="head-content">
+  <label>
+    <%= @todo.name %>
+  </label>
+</div>
+<div class="main-content">
+  <hr style="border:3 dashed #ff0033" width="100%" SIZE=3>
+  <h5> 评论列表 </h5>
+  <div class="comment-list">
+    <h6>
+      时间不大充裕 先不处理回复评论本身了
+    </h6>
+    <ul>
+      <%= render partial: 'comment', collection: @comments, as: :comment %>
+    </ul>
+  </div>
+  <hr style="border:3 dashed #ff0033" width="100%" SIZE=3>
+  <%= form_for :comment, url: todo_comments_path(@todo) , remote: true do |f| %>
+    <label>添加评论</label>
+    <div>
+      <%= f.text_area :content, cols:60, rows: 3 %>
+    </div>
+    <%= f.submit '提交' %>
+  <% end %>
+</div>

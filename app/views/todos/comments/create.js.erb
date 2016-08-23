@@ -1,0 +1,4 @@
+(function() {
+  $('.comment-list ul').append("<%= j(render(:partial => 'projects/todos/comment', locals: { comment: @comment} )) %>");
+  $('#comment_content').val('');
+})();
