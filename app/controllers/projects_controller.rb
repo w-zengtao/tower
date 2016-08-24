@@ -4,7 +4,7 @@ class ProjectsController < BaseController
 
   def index
     @current_team = Team.includes(:projects).find_by(id: current_user.default_team_id) # 这里重新查找是为了避免 N + 1
-    @projects = @current_team.projects
+    @projects = @current_team.projects.merge(current_user.projects)
   end
 
   def show

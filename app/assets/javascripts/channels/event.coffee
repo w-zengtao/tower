@@ -1,6 +1,10 @@
 App.event = App.cable.subscriptions.create "EventChannel",
   connected: ->
-    # Called when the subscription is ready for use on the server
+    setTimeout =>
+      @subscribe()
+      $(window).on 'unload', -> window.notificationChannel.unsubscribe()
+      $(document).on 'page:change', -> window.notificationChannel.subscribe()
+    , 1000
 
   disconnected: ->
     # Called when the subscription has been terminated by the server
@@ -19,5 +23,8 @@ App.event = App.cable.subscriptions.create "EventChannel",
         $('.event_list ul').prepend obj;
         sub_obj.after data['event'];
 
-  act: ->
-    @perform 'act'
+  subscribe: ->
+    @perform 'subscribed'
+
+  unsubscribe: ->
+    @perform 'unsubscribed'

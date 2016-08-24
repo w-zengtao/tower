@@ -24,6 +24,23 @@ class Event < ApplicationRecord
     self.eventable.send(:name)
   end
 
+  def be_seen?(user)
+    if team = user.team
+      team.projects.merge(user.projects).include? project
+    else
+      return false
+    end
+  end
+
+  # 应该通知的用户id
+  def be_notified_users
+    project.onteam_members.pluck(:id)
+  end
+
+  # def broadcast_to_client
+  #   ActionCable.server.broadcast 'event_channel',  { event: render_event(@event), date_id: @event.created_at.to_date, user_ids: self.be_notified_users }
+  # end
+
   # class methods
   class << self
     def events_with_projects(projects)

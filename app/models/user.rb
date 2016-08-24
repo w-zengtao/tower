@@ -29,6 +29,15 @@ class User < ApplicationRecord
     'admin' == accesses.find_by(project_id: project.id).level
   end
 
+  # 用户当前能否访问一个项目(用户必须切换到当前项目的团队的时候才能访问当前团队下面用户参与的项目)
+  def can_access?(project)
+    if team != project.team
+      false
+    else
+      projects.include? project
+    end
+  end
+
   # class methods
   class << self
     def current

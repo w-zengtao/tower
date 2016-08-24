@@ -28,6 +28,11 @@ class Project < ApplicationRecord
     add_member_by_level(user, level)
   end
 
+  # 项目当前应该通知的成员(onteam)
+  def onteam_members
+    members.select { |member| team == member.team }
+  end
+
   private
   def add_member_by_level(user, level)
     accesses.create(user: user, level: level)
