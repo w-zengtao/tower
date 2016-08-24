@@ -1,1 +1,1 @@
-Run `.set_up.sh` While Dev Env is Mac. 
+Run `./set_up.sh` While Dev Env is Mac. 
