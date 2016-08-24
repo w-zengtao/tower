@@ -36,9 +36,12 @@ module Projects
 
     def update
       @todo = Todo.find_by(id: params[:id])
-      ary = params[:todo][:deadline].split('/') # 那个gem 有点问题 也许会准备fork改一下 暂时先这样处理一下
-      ary = [ary[2], ary[0], ary[1]].join('-')
-      @deadline = ary.to_date
+      if params[:todo]
+        ary = nil
+        ary = params[:todo][:deadline].split('/') if params[:todo][:deadline] # 那个gem 有点问题 也许会准备fork改一下 暂时先这样处理一下
+        @deadline = [ary[2], ary[0], ary[1]].join('-').to_date if ary
+      end
+
       act = params[:act].to_i
       if @todo && (0 != act)
         @todo.update_attribute('state', act)

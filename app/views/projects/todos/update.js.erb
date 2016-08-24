@@ -1,11 +1,15 @@
 (function(){
   $('.modal-backdrop').remove();
-  $('#todo-content-<%= @todo.id %>').fadeOut();
-  $('#todo-content-<%= @todo.id %>').remove();
-  <% if 10 == @todo.state %>
-    par_obj = $('.project-show-finished-todos ul');
+  <% unless @deadline %>
+    $('#todo-content-<%= @todo.id %>').fadeOut();
+    $('#todo-content-<%= @todo.id %>').remove();
+    <% if 10 == @todo.state %>
+      par_obj = $('.project-show-finished-todos ul');
+    <% else %>
+      par_obj = $('.project-show ul');
+    <% end %>
+    par_obj.append("<%= j(render(:partial => 'projects/todo', locals: { todo: @todo} )) %>")
   <% else %>
-    par_obj = $('.project-show ul');
+    $('#todo-content-<%= @todo.id %>').replaceWith("<%= j(render(:partial => 'projects/todo', locals: { todo: @todo} )) %>")
   <% end %>
-  par_obj.append("<%= j(render(:partial => 'projects/todo', locals: { todo: @todo} )) %>")
 })();
