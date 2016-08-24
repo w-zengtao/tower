@@ -28,6 +28,9 @@ gem 'state_machine'
 # Datepicker
 gem 'bootstrap-datepicker-rails'
 
+# Json Serializer
+gem 'active_model_serializers', '~> 0.10.0'
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_girl_rails'
