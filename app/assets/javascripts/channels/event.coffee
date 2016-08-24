@@ -23,6 +23,7 @@ App.event = App.cable.subscriptions.create "EventChannel",
           obj.append(sub_obj);
           $('.event_list ul').prepend obj;
           sub_obj.after data['event'];
+          sub_obj.after data['line'];
 
   subscribe: ->
     @perform 'subscribed'
