@@ -10,18 +10,19 @@ App.event = App.cable.subscriptions.create "EventChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    if $('.event_list').length > 0
-      if $('#'+data['date_id']).length > 0
-        obj = $('.event_list ul li:first')
-        obj.before data['event']
-      else
-        obj = $('<div></div>');
-        obj.attr('id', data['date_id']);
-        sub_obj = $('<p></p>');
-        sub_obj.text(data['date_id']);
-        obj.append(sub_obj);
-        $('.event_list ul').prepend obj;
-        sub_obj.after data['event'];
+    if -1 != $.inArray(parseInt($.cookie('user_id')), data['user_ids'])
+      if $('.event_list').length > 0
+        if $('#'+data['date_id']).length > 0
+          obj = $('.event_list ul li:first')
+          obj.before data['event']
+        else
+          obj = $('<div></div>');
+          obj.attr('id', data['date_id']);
+          sub_obj = $('<p></p>');
+          sub_obj.text(data['date_id']);
+          obj.append(sub_obj);
+          $('.event_list ul').prepend obj;
+          sub_obj.after data['event'];
 
   subscribe: ->
     @perform 'subscribed'

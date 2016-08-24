@@ -4,4 +4,5 @@
 #= require turbolinks
 #= require bootstrap-datepicker
 #= require cable
+#= require cookie
 #= require_tree .
