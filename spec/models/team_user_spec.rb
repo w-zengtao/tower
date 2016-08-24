@@ -6,6 +6,7 @@ RSpec.describe TeamUser, type: :model do
     Team.destroy_all
     TeamUser.destroy_all
     @user = FactoryGirl.create(:user, name: 'test', email: 'test@tower.com')
+    User.current = @user 
   }
 
   it "创建一个新的团队的时候, 创建者应该是团队的超级管理员" do

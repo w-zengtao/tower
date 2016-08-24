@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :accesses
   has_many :projects, through: :accesses
 
-  belongs_to :team, class_name: 'Team', foreign_key: 'default_team_id'
+  belongs_to :team, class_name: 'Team', foreign_key: 'default_team_id', optional: true
 
   # object methods
   def set_default_team(team)
