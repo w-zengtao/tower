@@ -7,7 +7,7 @@ module Api
         count = params[:count].blank? ? 50 : params[:count]
         @events = Event.limit(count)
 
-        render json: @events
+        render json: @events, each_serializer: EventSerializer, root: "events", adapter: :json
       end
     end
   end
