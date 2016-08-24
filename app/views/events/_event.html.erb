@@ -1,4 +1,5 @@
 <li>
+  <%= event.created_at.strftime("%H:%M") %>
   <% if 'Todo' == event.eventable_type %>
     <%= event.operator_name %> <%= event.act %> <%= event.eventable_type %>: <%= event.name %>
     <% if event.user %>

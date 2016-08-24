@@ -6,9 +6,18 @@
   <div class="event_list">
     <ul>
       <% @events.each do |key, values| %>
-        <div id="<%= key %>">
+        <div id="<%= key %>" >
           <p> <%= key %> </p>
-          <%= render partial: 'event', collection: values, as: :event %>
+
+          <%= render partial: 'line', locals: { event: values.first } %>
+          <%= render partial: 'event', locals: { event: values.first } %>
+
+          <% values.each_cons(2) do |pre, cur|%>
+            <% if show_hr(pre, cur) %>
+              <%= render partial: 'line', locals: { event: cur } %>
+            <% end %>
+            <%= render partial: 'event', locals: { event: cur } %>
+          <% end %>
           <br>
         </div>
       <% end %>
