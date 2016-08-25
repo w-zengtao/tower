@@ -2,6 +2,7 @@ module SoftDelete
   extend ActiveSupport::Concern
 
   included do
+    default_scope -> { where(deleted_at: nil) }
     alias_method :destroy!, :destroy
   end
 
