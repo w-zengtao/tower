@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  # TestShallow
+  resources :articles do
+    resources :titles, shallow: true
+  end
+
+  resources :posts, shallow: true do
+    resources :authors
+  end
+
+  resources :talks do
+    resources :dogs
+  end
+
+
   # WebSite
   resources :teams, only: [:create, :new, :show, :index]
   resources :events, only: [:index]
